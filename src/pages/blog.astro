@@ -1,32 +1,22 @@
 ---
 // 导入布局组件
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 // blog列表
-import BlogPost from '../components/BlogPost.astro';
+import BlogPost from "../components/BlogPost.astro";
 // 获取所有文章的数据  Astro.glob()
-const allPosts = await Astro.glob('./posts/*.md');
+const allPosts = await Astro.glob("./posts/*.md");
 const pageTitle = "我的 Astro 学习博客";
 // 导入样式
 import "../styles/global.css";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-  </head>
-  <body>
-    <BaseLayout pageTitle={pageTitle}>
-    <p>在这里，我将分享我的学习 Astro 的之旅。</p>
-    <ul>
-        {allPosts.map((post) => <BlogPost url={post.url} title={post.frontmatter.title} />)}
-    </ul>
-    </BaseLayout>
-
- 
-
-  </body>
-</html>
+<BaseLayout pageTitle={pageTitle}>
+  <p>在这里，我将分享我的学习 Astro 的之旅。</p>
+  <ul>
+    {
+      allPosts.map((post) => (
+        <BlogPost url={post.url} title={post.frontmatter.title} />
+      ))
+    }
+  </ul>
+</BaseLayout>

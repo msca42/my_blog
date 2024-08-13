@@ -75,17 +75,16 @@ h1 {
     display: inline-block;
     padding: 15px 20px;
   }
-}
-
-.hamburger {
+  .hamburger {
     display: none;
+  }
 }
 
 html.dark {
-    background-color: #0d0950;
-    color: #fff;
-  }
-  
-  .dark .nav-links a {
-    color: #fff;
-  }
+  background-color: #0d0950;
+  color: #fff;
+}
+
+.dark .nav-links a {
+  color: #fff;
+}
