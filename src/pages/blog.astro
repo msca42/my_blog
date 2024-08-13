@@ -5,13 +5,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import BlogPost from "../components/BlogPost.astro";
 // 获取所有文章的数据  Astro.glob()
 const allPosts = await Astro.glob("./posts/*.md");
-const pageTitle = "我的 Astro 学习博客";
+const pageTitle = "mayfly博客";
 // 导入样式
 import "../styles/global.css";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <p>在这里，我将分享我的学习 Astro 的之旅。</p>
+  <p>在这里，我将分享我的学习之旅。</p>
   <ul>
     {
       allPosts.map((post) => (
