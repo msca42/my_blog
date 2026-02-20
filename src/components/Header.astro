@@ -1,18 +1,25 @@
 ---
-//导入汉堡组件
 import Hamburger from './Hamburger.astro';
-// 导入导航组件
 import Navigation from './Navigation.astro';
-// 导入主题图标
 import ThemeIcon from './ThemeIcon.astro';
 ---
-<header>
- <nav>
-    <!-- 应用汉堡组件 -->
-    <Hamburger />
-    <!-- 应用主题图标 -->
-    <ThemeIcon />
-    <!-- 应用导航组件 -->
-   <Navigation />
- </nav>
+
+<header class="mb-10">
+  <nav class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl rounded-2xl shadow-lg border border-white/40 dark:border-slate-700/50 p-4 md:p-6">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-md">
+          <span class="text-white font-bold text-lg">M</span>
+        </div>
+        <span class="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent hidden md:block">
+          Mayfly Blog
+        </span>
+      </div>
+      <Hamburger />
+      <div class="flex items-center gap-4">
+        <ThemeIcon />
+        <Navigation />
+      </div>
+    </div>
+  </nav>
 </header>

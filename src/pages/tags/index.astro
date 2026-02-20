@@ -1,33 +1,27 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-const allPosts = await Astro.glob('../posts/*.md');
-const tags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())];
-const pageTitle = "Tag Index";
----
-<BaseLayout pageTitle={pageTitle}>
-    <div class="tags">
-      {tags.map((tag) => (
-        <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
-      ))}
-    </div>
-</BaseLayout>
 
-<style>
-    a {
-      color: #00539F;
-    }
-  
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-    }
-  
-    .tag {
-      margin: 0.25em;
-      border: dotted 1px #a1a1a1;
-      border-radius: .5em;
-      padding: .5em 1em;
-      font-size: 1.15em;
-      background-color: #F8FCFD;
-    }
-  </style>
+const allPosts = await getCollection('blog');
+const tags = [
+  ...new Set(allPosts.map(post => post.data.tags).filter(Boolean).flat()),
+];
+const pageTitle = 'Tag Index';
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <p class="text-lg text-slate-600 dark:text-slate-400 mb-8">
+    浏览所有文章标签
+  </p>
+  <div class="flex flex-wrap gap-3">
+    {tags.map(tag => (
+      <a
+        href={`/tags/${tag}`}
+        class="group relative px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden"
+      >
+        <span class="relative z-10">#{tag}</span>
+        <div class="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

@@ -1,9 +1,10 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import '../styles/base.css';
 const { pageTitle } = Astro.props;
 ---
+
 <html lang="zh-cn">
   <head>
     <meta charset="utf-8" />
@@ -12,13 +13,22 @@ const { pageTitle } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
   </head>
-  <body>
-    <Header />
-    <h1>{pageTitle}</h1>
-    <slot />
-    <Footer />
+  <body class="min-h-screen bg-gradient-to-br from-slate-100 via-blue-50 to-purple-50 dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 text-slate-800 dark:text-slate-100">
+    <div class="max-w-5xl mx-auto px-4 py-8">
+      <Header />
+      <main class="mt-10">
+        <div class="bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/30 dark:border-slate-700/50 p-8 md:p-10">
+          <h1 class="text-4xl md:text-5xl font-extrabold mb-2 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 bg-clip-text text-transparent">
+            {pageTitle}
+          </h1>
+          <div class="h-1 w-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-8"></div>
+          <slot />
+        </div>
+      </main>
+      <Footer />
+    </div>
     <script>
-      import "../scripts/menu.js";
+      import '../scripts/menu.js';
     </script>
   </body>
 </html>

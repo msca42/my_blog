@@ -1,54 +1,53 @@
 ---
-// 导入布局组件
-import BaseLayout from "../layouts/BaseLayout.astro";
-// 导入样式
-import "../styles/global.css";
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = "关于我";
+const pageTitle = '关于我';
 
 const identity = {
-  firstName: "mayfly",
-  city: "南京",
-  occupation: "程序员",
-  // hobbies: ["摄影", "观鸟"],
+  firstName: 'mayfly',
+  city: '南京',
+  occupation: '程序员',
 };
-const skills = ["Astro"];
-
-
-const skillColor = "navy";
-const fontWeight = "bold";
-const textCase = "uppercase";
+const skills = ['Astro'];
 ---
 
-<style define:vars={{ skillColor, fontWeight, textCase }}>
-  h1 {
-    color: purple;
-    font-size: 4rem;
-  }
-  .skill {
-    color: var(--skillColor);
-    font-weight: var(--fontWeight);
-    text-transform: var(--textCase);
-  }
-</style>
-
 <BaseLayout pageTitle={pageTitle}>
-
-  <p>以下是关于我的几个事实：</p>
-  <ul>
-    <li>我的名字是{identity.firstName}.</li>
-    <li>我住在{identity.city}。我的职业是{identity.occupation}。</li>
-    <!-- {
-      identity.hobbies.length >= 2 && (
-        <li>
-          我的两个习惯：{identity.hobbies[0]}和{identity.hobbies[1]}
+  <div class="space-y-8">
+    <div class="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-2xl p-6 border border-purple-100 dark:border-purple-800/50">
+      <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-4">个人简介</h3>
+      <p class="text-slate-600 dark:text-slate-300 mb-4">以下是关于我的几个事实：</p>
+      <ul class="space-y-3">
+        <li class="flex items-center gap-3">
+          <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+          <span class="text-slate-700 dark:text-slate-200">
+            我的名字是 <span class="font-semibold text-purple-600 dark:text-purple-400">{identity.firstName}</span>
+          </span>
         </li>
-      )
-    } -->
-  </ul>
-  <p>我的技能是：</p>
-  <ul>
-    {skills.map((skill) => <li class="skill">{skill}</li>)}
-  </ul>
+        <li class="flex items-center gap-3">
+          <span class="w-2 h-2 rounded-full bg-pink-500"></span>
+          <span class="text-slate-700 dark:text-slate-200">
+            我住在 <span class="font-semibold text-pink-600 dark:text-pink-400">{identity.city}</span>
+          </span>
+        </li>
+        <li class="flex items-center gap-3">
+          <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+          <span class="text-slate-700 dark:text-slate-200">
+            我的职业是 <span class="font-semibold text-orange-600 dark:text-orange-400">{identity.occupation}</span>
+          </span>
+        </li>
+      </ul>
+    </div>
 
+    <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 rounded-2xl p-6 border border-blue-100 dark:border-blue-800/50">
+      <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-4">技能</h3>
+      <p class="text-slate-600 dark:text-slate-300 mb-4">我的技能是：</p>
+      <div class="flex flex-wrap gap-2">
+        {skills.map(skill => (
+          <span class="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl font-bold text-navy uppercase shadow-md">
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
 </BaseLayout>

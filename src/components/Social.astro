@@ -1,15 +1,17 @@
 ---
-// 写入数据给props接收
 const { platform, username } = Astro.props;
 ---
-<a href={`https://www.${platform}.com/${username}`}>{platform}</a>
 
-<!-- 给社交媒体组件添加样式 -->
-<style>
-    a {
-      padding: 0.5rem 1rem;
-      color: white;
-      background-color: #4c1d95;
-      text-decoration: none;
-    }
-  </style>
+<a
+  href={`https://www.${platform}.com/${username}`}
+  class="px-4 py-2 text-white rounded-xl font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+  style={`background: linear-gradient(135deg, ${
+    platform === 'twitter'
+      ? '#1da1f2, #0d8ecf'
+      : platform === 'github'
+      ? '#333, #24292e'
+      : '#ff0000, #cc0000'
+  });`}
+>
+  {platform}
+</a>

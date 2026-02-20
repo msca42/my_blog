@@ -1,22 +1,31 @@
 ---
-// 导入布局组件
-import BaseLayout from "../layouts/BaseLayout.astro";
-// blog列表
-import BlogPost from "../components/BlogPost.astro";
-// 获取所有文章的数据  Astro.glob()
-const allPosts = await Astro.glob("./posts/*.md");
-const pageTitle = "mayfly博客";
-// 导入样式
-import "../styles/global.css";
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogPost from '../components/BlogPost.astro';
+
+const allPosts = await getCollection('blog');
+const pageTitle = 'mayfly博客';
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <p>在这里，我将分享我的学习之旅。</p>
-  <ul>
-    {
-      allPosts.map((post) => (
-        <BlogPost url={post.url} title={post.frontmatter.title} />
-      ))
-    }
-  </ul>
+  <p class="text-lg text-slate-600 dark:text-slate-400 mb-8">在这里，我将分享我的学习之旅。</p>
+  <div class="space-y-4">
+    {allPosts.map(post => (
+      <a
+        href={`/posts/${post.slug}`}
+        class="block p-6 rounded-2xl bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 border border-purple-100 dark:border-purple-800/50 hover:shadow-xl hover:scale-[1.02] transition-all duration-300 group"
+      >
+        <h3 class="text-xl font-bold text-slate-800 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
+          {post.data.title}
+        </h3>
+        <p class="text-slate-600 dark:text-slate-400 mt-2">{post.data.description}</p>
+        <div class="flex items-center gap-4 mt-4 text-sm text-slate-500 dark:text-slate-500">
+          <span>{post.data.pubDate.toDateString()}</span>
+          {post.data.tags && post.data.tags.length > 0 && (
+            <span>· {post.data.tags.length} 标签</span>
+          )}
+        </div>
+      </a>
+    ))}
+  </div>
 </BaseLayout>
