@@ -1,13 +1,20 @@
 ---
+// Markdown 文章布局组件 - 用于渲染单篇博客文章
 import BaseLayout from './BaseLayout.astro';
+// 接收文章的 frontmatter（元数据）作为 props
 const { frontmatter } = Astro.props;
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
+  <!-- 显示发布日期 -->
   <p>{frontmatter.pubDate.toString().slice(0, 10)}</p>
+  <!-- 显示文章描述 -->
   <p><em>{frontmatter.description}</em></p>
+  <!-- 显示作者 -->
   <p>Written by: {frontmatter.author}</p>
+  <!-- 显示文章图片（如果有） -->
   <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
+  <!-- 标签列表 -->
   <div class="tags">
     {
       frontmatter.tags.map(tag => (
@@ -17,6 +24,7 @@ const { frontmatter } = Astro.props;
       ))
     }
   </div>
+  <!-- 插槽，用于放置 Markdown 内容 -->
   <slot />
 </BaseLayout>
 <style>

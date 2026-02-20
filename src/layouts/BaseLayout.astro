@@ -1,7 +1,9 @@
 ---
+// 基础布局组件 - 所有页面的通用布局
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/base.css';
+// 接收页面标题作为 props
 const { pageTitle } = Astro.props;
 ---
 
@@ -13,20 +15,28 @@ const { pageTitle } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
   </head>
+  <!-- 页面主体，包含渐变背景和暗黑模式支持 -->
   <body class="min-h-screen bg-gradient-to-br from-slate-100 via-blue-50 to-purple-50 dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 text-slate-800 dark:text-slate-100">
+    <!-- 内容容器，最大宽度 5xl，居中显示 -->
     <div class="max-w-5xl mx-auto px-4 py-8">
       <Header />
+      <!-- 主要内容区域 -->
       <main class="mt-10">
+        <!-- 毛玻璃效果的内容卡片 -->
         <div class="bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/30 dark:border-slate-700/50 p-8 md:p-10">
+          <!-- 页面标题，使用渐变色文本 -->
           <h1 class="text-4xl md:text-5xl font-extrabold mb-2 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 bg-clip-text text-transparent">
             {pageTitle}
           </h1>
+          <!-- 标题下方的装饰线 -->
           <div class="h-1 w-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-8"></div>
+          <!-- 插槽，用于放置页面内容 -->
           <slot />
         </div>
       </main>
       <Footer />
     </div>
+    <!-- 引入菜单交互脚本 -->
     <script>
       import '../scripts/menu.js';
     </script>

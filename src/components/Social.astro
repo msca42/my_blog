@@ -1,7 +1,9 @@
 ---
+// 社交媒体链接组件 - 显示社交媒体按钮
 const { platform, username } = Astro.props;
 ---
 
+<!-- 社交媒体链接按钮 -->
 <a
   href={`https://www.${platform}.com/${username}`}
   class="px-4 py-2 text-white rounded-xl font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"

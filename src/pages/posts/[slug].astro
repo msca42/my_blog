@@ -1,7 +1,9 @@
 ---
+// 文章详情页 - 动态路由，根据 slug 显示单篇文章
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
+// 预生成所有可能的路由路径（静态生成）
 export async function getStaticPaths() {
   const blogPosts = await getCollection('blog');
   return blogPosts.map(post => ({
@@ -10,24 +12,31 @@ export async function getStaticPaths() {
   }));
 }
 
+// 从 props 中获取文章数据
 const { post } = Astro.props;
+// 渲染文章内容
 const { Content } = await post.render();
 ---
 
 <BaseLayout pageTitle={post.data.title}>
+  <!-- 文章元信息区域 -->
   <div class="mb-6">
+    <!-- 发布日期 -->
     <p class="text-slate-500 dark:text-slate-400 mb-2 flex items-center gap-2">
       <span class="inline-block w-2 h-2 rounded-full bg-purple-500"></span>
       {post.data.pubDate.toDateString()}
     </p>
+    <!-- 文章描述 -->
     <p class="text-lg italic text-slate-600 dark:text-slate-300 mb-4">
       {post.data.description}
     </p>
+    <!-- 作者 -->
     <p class="text-slate-700 dark:text-slate-300 font-medium">
       Written by: <span class="text-purple-600 dark:text-purple-400">{post.data.author}</span>
     </p>
   </div>
 
+  <!-- 文章图片（如果有） -->
   {post.data.image && (
     <div class="mb-8">
       <img
@@ -39,6 +48,7 @@ const { Content } = await post.render();
     </div>
   )}
 
+  <!-- 标签列表（如果有） -->
   {post.data.tags && (
     <div class="flex flex-wrap gap-2 mb-8">
       {post.data.tags.map(tag => (
@@ -52,6 +62,7 @@ const { Content } = await post.render();
     </div>
   )}
 
+  <!-- 文章内容区域，使用 Tailwind Typography 插件美化 -->
   <article class="prose prose-lg dark:prose-invert max-w-none prose-headings:bg-gradient-to-r prose-headings:from-purple-600 prose-headings:to-pink-600 prose-headings:bg-clip-text prose-headings:text-transparent">
     <Content />
   </article>

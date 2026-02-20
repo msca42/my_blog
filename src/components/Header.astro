@@ -1,12 +1,15 @@
 ---
+// 页面头部组件 - 包含 Logo、导航和主题切换
 import Hamburger from './Hamburger.astro';
 import Navigation from './Navigation.astro';
 import ThemeIcon from './ThemeIcon.astro';
 ---
 
 <header class="mb-10">
+  <!-- 导航栏，使用毛玻璃效果 -->
   <nav class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl rounded-2xl shadow-lg border border-white/40 dark:border-slate-700/50 p-4 md:p-6">
     <div class="flex items-center justify-between">
+      <!-- Logo 和网站名称 -->
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-md">
           <span class="text-white font-bold text-lg">M</span>
@@ -15,7 +18,9 @@ import ThemeIcon from './ThemeIcon.astro';
           Mayfly Blog
         </span>
       </div>
+      <!-- 移动端汉堡菜单 -->
       <Hamburger />
+      <!-- 主题切换和导航链接 -->
       <div class="flex items-center gap-4">
         <ThemeIcon />
         <Navigation />

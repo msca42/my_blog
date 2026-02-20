@@ -1,8 +1,11 @@
 ---
+// 标签索引页 - 显示所有文章标签
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
+// 获取所有博客文章
 const allPosts = await getCollection('blog');
+// 提取所有不重复的标签
 const tags = [
   ...new Set(allPosts.map(post => post.data.tags).filter(Boolean).flat()),
 ];
@@ -10,11 +13,14 @@ const pageTitle = 'Tag Index';
 ---
 
 <BaseLayout pageTitle={pageTitle}>
+  <!-- 页面描述 -->
   <p class="text-lg text-slate-600 dark:text-slate-400 mb-8">
     浏览所有文章标签
   </p>
+  <!-- 标签列表 -->
   <div class="flex flex-wrap gap-3">
     {tags.map(tag => (
+      <!-- 标签按钮 -->
       <a
         href={`/tags/${tag}`}
         class="group relative px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden"

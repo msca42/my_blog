@@ -1,9 +1,11 @@
 ---
+// 页面底部组件 - 包含版权信息和社交媒体链接
 import Social from './Social.astro';
 ---
 
 <footer class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
   <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+    <!-- 版权信息 -->
     <div class="flex items-center gap-3">
       <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-md">
         <span class="text-white font-bold text-sm">M</span>
@@ -12,6 +14,7 @@ import Social from './Social.astro';
         © {new Date().getFullYear()} Mayfly Blog. All rights reserved.
       </span>
     </div>
+    <!-- 社交媒体链接 -->
     <div class="flex gap-2">
       <Social platform="twitter" username="astrodotbuild" />
       <Social platform="github" username="msca42" />

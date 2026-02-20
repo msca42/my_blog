@@ -1,3 +1,7 @@
+/* Tailwind CSS 基础样式文件 */
+/* 导入 Tailwind 的基础样式 */
 @tailwind base;
+/* 导入 Tailwind 的组件样式 */
 @tailwind components;
+/* 导入 Tailwind 的工具类 */
 @tailwind utilities;

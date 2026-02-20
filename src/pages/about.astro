@@ -1,18 +1,22 @@
 ---
+// 关于我页面 - 展示个人信息和技能
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const pageTitle = '关于我';
 
+// 个人身份信息
 const identity = {
   firstName: 'mayfly',
   city: '南京',
   occupation: '程序员',
 };
+// 技能列表
 const skills = ['Astro'];
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <div class="space-y-8">
+    <!-- 个人简介卡片 -->
     <div class="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-2xl p-6 border border-purple-100 dark:border-purple-800/50">
       <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-4">个人简介</h3>
       <p class="text-slate-600 dark:text-slate-300 mb-4">以下是关于我的几个事实：</p>
@@ -38,6 +42,7 @@ const skills = ['Astro'];
       </ul>
     </div>
 
+    <!-- 技能卡片 -->
     <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 rounded-2xl p-6 border border-blue-100 dark:border-blue-800/50">
       <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-4">技能</h3>
       <p class="text-slate-600 dark:text-slate-300 mb-4">我的技能是：</p>
